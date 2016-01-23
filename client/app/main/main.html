@@ -2,9 +2,25 @@
 
 <header class="hero-unit" id="banner">
   <div class="container">
-    <h1>'Allo, 'Allo!</h1>
-    <p class="lead">Kick-start your next web app with Angular Fullstack</p>
-    <img src="assets/images/yeoman.png" alt="I'm Yeoman">
+    <md-autocomplete
+      ng-disabled="ctrl.isDisabled"
+      md-no-cache="ctrl.noCache"
+      md-selected-item="ctrl.selectedItem"
+      md-search-text-change="ctrl.searchTextChange(ctrl.searchText)"
+      md-search-text="ctrl.searchText"
+      md-selected-item-change="ctrl.selectedItemChange(item)"
+      md-items="item in ctrl.querySearch(ctrl.searchText)"
+      md-item-text="item.display"
+      md-min-length="0"
+      placeholder="What is your favorite US state?">
+      <md-item-template>
+        <span md-highlight-text="ctrl.searchText" md-highlight-flags="^i">{{item.display}}</span>
+      </md-item-template>
+      <md-not-found>
+        No states matching "{{ctrl.searchText}}" were found.
+        <a ng-click="ctrl.newState(ctrl.searchText)">Create a new one!</a>
+      </md-not-found>
+    </md-autocomplete>
   </div>
 </header>
 
@@ -12,10 +28,26 @@
   <div class="row">
     <div class="col-lg-12">
 
-      <h1 class="page-header">Features:</h1>
-      <ul class="nav nav-tabs nav-stacked col-md-4 col-lg-4 col-sm-6" ng-repeat="address in main.addressList">
-        <li><a href="#" tooltip="{{thing.info}}">{{address.firstname}}</a></li>
-      </ul>
+      <md-content class="md-padding">
+        <div flex layout="column">
+          <md-card ng-repeat="contact in main.addressList">
+            <md-card-title>
+              <md-card-title-text>
+                <span class="md-headline">{{contact.firstname}} {{contact.lastname}}</span>
+                <span class="md-subhead">{{contact.number}}, {{contact.street}}</span>
+                <span class="md-body-1">{{contact.city}}, {{contact.postcode}}</span>
+              </md-card-title-text>
+              <md-card-title-media>
+                <div class="md-media-lg card-media"></div>
+              </md-card-title-media>
+            </md-card-title>
+            <md-card-actions layout="row" layout-align="end center">
+              <md-button>Supprimer</md-button>
+              <md-button>Modifier</md-button>
+            </md-card-actions>
+          </md-card>
+        </div>
+      </md-content>
     </div>
   </div>
 </div>
