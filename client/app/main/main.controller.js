@@ -6,10 +6,13 @@ class MainController {
 
   constructor($http) {
     this.$http = $http;
-    this.awesomeThings = [];
 
+    this.awesomeThings = [];
+    this.addressList = [];
+    
     $http.get('/api/things').then(response => {
-      this.awesomeThings = response.data;
+      console.log(response.data);
+      this.addressList = response.data;
     });
   }
 

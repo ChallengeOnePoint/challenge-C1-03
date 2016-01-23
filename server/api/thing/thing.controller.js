@@ -11,6 +11,7 @@
 
 import _ from 'lodash';
 var Thing = require('./thing.model');
+var adressList = require('./adressList');
 
 function handleError(res, statusCode) {
   statusCode = statusCode || 500;
@@ -61,9 +62,10 @@ function removeEntity(res) {
 
 // Gets a list of Things
 export function index(req, res) {
-  Thing.findAsync()
-    .then(responseWithResult(res))
-    .catch(handleError(res));
+  res.send(adressList);
+  // Thing.findAsync()
+  //   .then(responseWithResult(res))
+  //   .catch(handleError(res));
 }
 
 // Gets a single Thing from the DB
