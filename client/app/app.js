@@ -5,6 +5,7 @@ angular.module('challengeC103App', [
   'ngCookies',
   'ngResource',
   'ngSanitize',
+  'ngMaterial',
   'ui.router',
   'ui.bootstrap'
 ])
